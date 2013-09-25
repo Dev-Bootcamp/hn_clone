@@ -1,12 +1,18 @@
 <div class="container">
   <h1>Hacker News Clone</h1>
       <% @posts.each do |post| %>
-        <%= post.title %> 
-        <a href="<%= post.url %>">Link</a><br>
-        posted by <a href="/user/<%= post.user_id %>"><%= User.find(post.user_id).username %></a> at 
-        <%= post.created_at.strftime("%l:%m%P on %_m/%d/%Y") %>,
-        <a href="/post/<%= post.id %>">comments</a><br>
+        <a href="<%= post.url %>"><%= post.title %></a> (<%= post.url %>)
+        <br>posted by <a href="/user/<%= post.user_id %>"><%= User.find(post.user_id).username %></a> at 
+        <%= post.created_at.strftime("%l:%M%P on %_m/%d/%Y") %>,
+        <a href="/post/<%= post.id %>">comments</a><br><br>
       <% end %> 
 </div>
 
+<% if @user %>
+  <p>Welcome, <%= @user.username %>.</p>
+  <a href="/logout">Logout</a><br>
+<% end %>
+
+
 <a href="/submit">Submit New Post</a><br>
+<a href="/new_user">Create New User</a><br>
