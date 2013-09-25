@@ -1,0 +1,12 @@
+<p><a href="<%= @post.url %>"><%= @post.title %></a>  (<%= @post.url %>)</p>
+
+<% if session[:user_id] %>
+  <form action="/create_comment/<%= @post.id %>" method="POST">
+    <textarea name="body" required placeholder="Comment Body"></textarea><br>
+    <input type="submit" value="Create Comment">
+  </form>
+<% end %>
+
+<%= erb :comments %>
+
+<p><a href="/">Return to Home</a></p>
