@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   include BCrypt
+  validates :username, presence: true
+  validates :username, uniqueness: true
+  validates :password, presence: true
 
   has_many :posts
   has_many :comments
@@ -21,5 +24,5 @@ class User < ActiveRecord::Base
     return user if user && (user.password == password)
     nil  
   end
-  
+
 end
